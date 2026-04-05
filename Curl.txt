@@ -1,0 +1,26 @@
+Creacion de usuario
+Nota: para crearlo, añadir en SecurityConfig.java -> .requestMatchers("/auth/**", "/users")
+
+curl -v -X  POST http://localhost:8080/users   -H "Content-Type: application/json"   -d '{
+    "email": "eduardo@example.com",
+    "name": "Eduardo",
+    "password": "12345"
+  }'
+
+
+
+Login
+curl -v -X POST http://localhost:8080/auth/login   -H "Content-Type: application/json"   -d '{
+    "email": "eduardo@example.com",
+    "password": "12345"
+  }'
+
+Regresa token:
+
+eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHVhcmRvQGV4YW1wbGUuY29tIiwiaWF0IjoxNzc1MzUxMDA1LCJleHAiOjE3NzUzNTQ2MDV9.RVbQOjGcWNsz9K6vSjTC_wVkcE7n4cXE8sR_1ct2XTc
+
+
+Para usarlo:
+
+curl http://localhost:8080/users \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHVhcmRvQGV4YW1wbGUuY29tIiwiaWF0IjoxNzc1MzUxMDA1LCJleHAiOjE3NzUzNTQ2MDV9.RVbQOjGcWNsz9K6vSjTC_wVkcE7n4cXE8sR_1ct2XTc"
