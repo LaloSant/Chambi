@@ -7,6 +7,12 @@ curl -v -X  POST http://localhost:8080/users   -H "Content-Type: application/jso
     "password": "12345"
   }'
 
+curl -v -X  POST http://localhost:8080/users   -H "Content-Type: application/json"   -d '{
+    "email": "ejemplo@example.com",
+    "name": "Ejemplo",
+    "password": "12345"
+  }'
+
 
 
 Login
@@ -14,6 +20,11 @@ curl -v -X POST http://localhost:8080/auth/login   -H "Content-Type: application
     "email": "eduardo@example.com",
     "password": "12345"
   }'
+
+curl -v -X POST http://localhost:8080/auth/login   -H "Content-Type: application/json"   -d '{
+    "email": "ejemplo@example.com",
+    "password": "12345"
+}'
 
 Regresa token:
 
@@ -24,3 +35,34 @@ Para usarlo:
 
 curl http://localhost:8080/users \
   -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlZHVhcmRvQGV4YW1wbGUuY29tIiwiaWF0IjoxNzc1MzUxMDA1LCJleHAiOjE3NzUzNTQ2MDV9.RVbQOjGcWNsz9K6vSjTC_wVkcE7n4cXE8sR_1ct2XTc"
+
+
+NUEVO CREACION USUARIO (Con locaciones)
+
+curl -v -X  POST http://localhost:8080/users   -H "Content-Type: application/json"   -d '{
+"email": "ejemplo2@example.com",
+"name": "Ejemplo",
+"password": "12345",
+"locations": [
+	{
+		"name": "Casa principal",
+		"latitude": 19.292929,
+		"longitude": -99.589898,
+		"type": "HOUSE",
+		"streetline": "Av. Juárez 123",
+		"city": "San Mateo",
+		"state": "México",
+		"postalCode": "52100"
+	},
+	{
+		"name": "Oficina",
+		"latitude": 19.300000,
+		"longitude": -99.600000,
+		"type": "OFFICE",
+		"streetline": "Calle Reforma 456",
+		"city": "Toluca",
+		"state": "México",
+		"postalCode": "50000"
+	}
+]
+}'

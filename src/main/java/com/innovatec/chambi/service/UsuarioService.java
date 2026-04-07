@@ -15,11 +15,8 @@ public class UsuarioService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	private final UsuarioRepository userRepository;
-
-	public UsuarioService(UsuarioRepository userRepository) {
-		this.userRepository = userRepository;
-	}
+	@Autowired
+	private UsuarioRepository userRepository;
 
 	public List<Usuario> getAllUsers() {
 		return userRepository.findAll();
@@ -30,11 +27,11 @@ public class UsuarioService {
 		return userRepository.save(user);
 	}
 
-	public Optional<Usuario> getUser(Long id){
+	public Optional<Usuario> getUser(Long id) {
 		return userRepository.findById(id);
 	}
 
-	public Optional<Usuario> getUser(String email){
+	public Optional<Usuario> getUser(String email) {
 		return userRepository.findByEmail(email);
 	}
 }

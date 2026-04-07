@@ -21,7 +21,4 @@ public class Profession {
 
 	@Column(length = 50)
 	private String name;
-
-	@Column(length = 150)
-	private String description;
 }

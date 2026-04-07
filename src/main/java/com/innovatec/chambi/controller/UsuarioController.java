@@ -7,6 +7,7 @@ import com.innovatec.chambi.model.entity.Usuario;
 import com.innovatec.chambi.service.UsuarioService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -20,9 +21,21 @@ public class UsuarioController {
 		return userService.getAllUsers();
 	}
 
+	@GetMapping("/{idUser}")
+	public Usuario getUser(@PathVariable Long idUser) {
+		Optional<Usuario> usrOpti = userService.getUser(idUser);
+		if (!usrOpti.isPresent()) {
+			return null;
+		}
+		return usrOpti.get();
+	}
+
 	@PostMapping
-	public Usuario createUser(@RequestBody Usuario user) {
-		return userService.saveUser(user);
+	public void createUser(@RequestBody Usuario user) {
+		if (user.getLocations() != null) {
+			user.getLocations().forEach(loc -> loc.setUser(user));
+		}
+		userService.saveUser(user);
 	}
 
 }
